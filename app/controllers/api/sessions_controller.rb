@@ -32,4 +32,5 @@ class Api::SessionsController < ApiController
     safe_token = SecureRandom.hex while User.find_by(auth_token: safe_token)
     return safe_token
   end
+
 end
