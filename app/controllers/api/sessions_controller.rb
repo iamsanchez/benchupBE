@@ -25,12 +25,5 @@ class Api::SessionsController < ApiController
     end
   end
 
-  private
-
-  def generate_token
-    safe_token = SecureRandom.hex
-    safe_token = SecureRandom.hex while User.find_by(auth_token: safe_token)
-    return safe_token
-  end
 
 end

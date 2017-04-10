@@ -1,4 +1,5 @@
 class  Api::UsersController < ApiController
+
 	
 	def create
 		@user=nil
@@ -8,6 +9,7 @@ class  Api::UsersController < ApiController
     	if @user.valid?
     		 @user.auth_token = generate_token 
      		 @user.save
+             @user.gyms << Gym.first unless Gym.first.nil?
      		 http_status_response(status: :ok, message: "User Created", data: @user)
     	else
     		 http_status_response(status: :unprocessable_entity, message: "Invalid User Creation Params", data: @user.errors.full_messages)

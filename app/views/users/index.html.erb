@@ -1,5 +1,37 @@
-<h1>All users</h1>
 
-<% @users.each do |user| %>
-	<p>user.email</p>
-<% end %>
+
+
+<div class="row">
+
+  <p id="notice"><%= notice %></p>
+  <h1 class="ui header"> <i class = "users icon"></i> All Users</h1>
+  <%= link_to  new_user_path, class: "ui right floated teal button"  do %>
+    Add new user
+  <% end %>
+  <br>
+</div>  
+
+<div class = "sixteen wide column">
+  <br>
+
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) , class: "ui blue mini ui button" %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "ui red mini ui button" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div> 
+<br>

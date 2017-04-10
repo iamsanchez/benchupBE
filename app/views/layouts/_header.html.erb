@@ -1,0 +1,41 @@
+<div class="ui inverted fluid attached menu">
+  <div class="ui container">
+  <%= link_to(users_path, :class => 'item') do %>
+   <i class = "info icon"></i>Promos
+  <% end %>
+  <%= link_to(destroy_user_session_path, {method: :delete, class: "right item"}) do %>
+    <i class ="sign out icon"></i> Logout
+  <%end%>
+
+  </div>
+</div>
+<div class="ui black top fixed stackable inverted menu">
+  <div class="item">
+    <h2 class="">BenchUp</h2>
+  </div>
+
+  <%if user_signed_in?%>
+      <%= link_to(gyms_path, :class => 'item') do %>
+        <i class = "building icon"></i>
+        Gyms
+      <% end %>
+
+
+
+      <div class="right menu">
+          <%=link_to users_path,  class: "item " do%>
+            <i class="users icon"></i>
+            User Administration
+          <% end %>
+
+        <%=link_to destroy_user_session_path, method: :delete, class: "item " do%>
+          <i class="sign out icon"></i>
+          Log Out
+        <% end %>
+      </div>
+  <% else %>
+    <div class="right menu">
+      <%=link_to "Sign In", new_user_session_path, class: "item" %>
+    </div>
+  <% end %>
+</div>

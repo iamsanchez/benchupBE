@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   	resources :users
   end 
 
-  resources :users, prefix: "cms"
+  scope "cms" do
+    resources :users
+    resources :gyms
+  end
+
 
 
   root "users#index"
