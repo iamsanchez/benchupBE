@@ -33,9 +33,18 @@
         <td><%= gym.description %></td>
         <td><%= gym.email %></td>
         <td><%= image_tag(gym.logo, {height:"100px", width:"100px",style:"background:#777;border:solid 1px #ccc"}) %></td>
-        <td><%= link_to 'Classes', gym , class: "ui green mini ui button"%></td>
-        <td><%= link_to 'Edit', edit_gym_path(gym) , class: "ui blue mini ui button" %></td>
-        <td><%= link_to 'Delete', gym, method: :delete, data: { confirm: 'Are you sure?' }, class: "ui red mini ui button" %></td>
+        <td><%= link_to gym_events_path(gym) , class: "ui green mini ui button" do %>
+            <i class="announcement icon"></i> Classes
+          <% end %>
+        </td>
+        <td><%= link_to  edit_gym_path(gym) , class: "ui blue mini ui button" do %>
+            <i class="edit icon"></i> Edit
+          <% end %>
+        </td>
+        <td><%= link_to  gym, method: :delete, data: { confirm: 'Are you sure?' }, class: "ui red mini ui button"  do %>
+            <i class="trash icon"></i> Delete 
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

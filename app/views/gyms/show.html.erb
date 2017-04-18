@@ -1,24 +1,55 @@
-<p id="notice"><%= notice %></p>
+<div class="sixteen wide column grid container">
+ 
 
-<p>
-  <strong>Name:</strong>
-  <%= @gym.name %>
-</p>
+  <div class="row">
+  	<%= link_to new_show_social_feed_item_path(@show), class: "ui blue right floated large button" do %>
+       <i class="plus icon white"></i> New Social Feed Item
+	<% end %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @gym.description %>
-</p>
+    <h2 class="ui header">
+      <i class="list icon"></i>
+      Feed Items
+    </h2>
+  </div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @gym.email %>
-</p>
+</div>
 
-<p>
-  <strong>Logo:</strong>
-  <%= @gym.logo %>
-</p>
+<div class="sixteen wide column grid container" id="save-sort-container" style="display:none">
+  <a class="ui green right floated button" id="btn-save-sort">
+    <i class="save icon"></i> Save Order!
+  </a>
+</div>
 
-<%= link_to 'Edit', edit_gym_path(@gym) %> |
-<%= link_to 'Back', gyms_path %>
+<div class="sixteen wide column grid container">
+  <div class="ui raised segment">
+    <!--<div class="ui center aligned grid">-->
+    <div class="sixteen wide column center aligned">
+      <div class="ui large feed" id="final_list">
+        <% if @items.length>0 %>
+            <% @items.order(:sort_order).each do |item| %>
+                <% case item.social_type when "Instagram" %>
+                    <%= render partial: "social_feed_items/instagram_feed", locals: {item: item} %>
+                <% when "Tweet" %>
+                    <%= render partial: "social_feed_items/twitter_feed", locals: {item: item} %>
+                <% when "Gallery" %>
+                    <%= render partial: "social_feed_items/gallery_feed", locals: {item: item} %>
+                <% when "Promo" %>
+                    <%= render partial: "social_feed_items/promo_feed", locals: {item: item} %>
+                <% when "StormIdeas" %>
+                    <%= render partial: "social_feed_items/stormideas_feed", locals: {item: item} %>
+                <% else %>
+                    <%= render partial: "social_feed_items/no_type", locals: {item: item} %>
+                <% end %>
+            <% end %>
+        <% else %>
+            <div class="ui grid">
+              <div class="sixteen wide column center aligned">
+                <h3>No Events have been added to this Gym.</h3>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+    <!--<div class="three wide column"></div>-->
+  </div>
+</div>

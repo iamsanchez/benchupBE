@@ -1,0 +1,30 @@
+<div class="event feed-item-event" data-id="<%= item.id %>">
+  <div class="label">
+    <i class="student icon"></i>
+  </div>
+  <div class="content">
+    <div class="ui stackable grid">
+      <div class="twelve wide column">
+        <div class="summary">Class</div>
+        <div class="extra text">
+         <%=  item.description %>
+        </div>
+        <div class="extra images">
+        <%= image_tag(item.image) %>
+        </div>
+      </div>
+      <div class="four wide column middle aligned computer tablet only">
+        <!--<div class="ui right floated vertical labeled icon basic buttons">-->
+          <%= link_to edit_gym_event_path(item.gym, item), class: "ui fluid blue button" do %>
+              <i class="edit icon"></i> Edit
+          <% end %>
+        <br>
+          <%= link_to [item.gym, item], method: :delete, data: {confirm: 'Are you sure you want to delete this Event?'}, class: "ui fluid red button" do %>
+              <i class="trash icon"></i> Delete
+          <% end %>
+        <!--</div>-->
+      </div>
+    </div>
+
+  </div>
+</div>

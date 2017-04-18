@@ -1,0 +1,61 @@
+
+<div class="sixteen wide column grid container">
+
+  <h2 class="ui header">
+      <i class="announcement icon"></i>
+      Events for <%= @gym.name %>
+    </h2>
+ 
+
+  <div class="row">
+     <%= link_to gyms_path, class: "ui blue left floated large button" do %>
+       <i class="building icon"></i> Back to Gyms
+   <% end %>
+
+    <%= link_to new_gym_event_path(@gym), class: "ui teal right floated large button" do %>
+       <i class="plus icon white"></i> New Event
+   <% end %> 
+  </div>
+
+  <div class="row" id="save-sort-container" style="display:none">
+     <a class="ui green right floated button" id="btn-save-sort">
+      <i class="save icon"></i> Save Order!
+    </a>
+  </div>
+
+  </div>
+<br>
+<br>
+<br>
+
+
+<div class="sixteen wide column grid container">
+
+  <div class="ui raised segment">
+    <!--<div class="ui center aligned grid">-->
+    <div class="sixteen wide column center aligned">
+      <div class="ui large feed" id="final_list">
+        <% if @events.length>0 %>
+            <% @events.order(:sort_order).each do |item| %>
+                <% case item.event_type when "ad" %>
+                    <%= render partial: "events/ad_feed", locals: {item: item} %>
+                <% when "class" %>
+                    <%= render partial: "events/class_feed", locals: {item: item} %>
+                <% when "event" %>
+                    <%= render partial: "events/event_feed", locals: {item: item} %>
+                <% else %>
+                    <%= render partial: "events/ad_feed", locals: {item: item} %>
+                <% end %>
+            <% end %>
+        <% else %>
+            <div class="ui grid">
+              <div class="sixteen wide column center aligned">
+                <h3>No events have been added to this gym.</h3>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+    <!--<div class="three wide column"></div>-->
+  </div>
+</div>

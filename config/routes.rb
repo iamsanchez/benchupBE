@@ -1,5 +1,5 @@
-Rails.application.routes.draw do
-  devise_for :users
+Rails.application.routes.draw do 
+ devise_for :users
 
   namespace "api" do
   	post "login" => "sessions#create"
@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   scope "cms" do
     resources :users
-    resources :gyms
+    resources :gyms do 
+      resources :events
+    end
   end
 
 
